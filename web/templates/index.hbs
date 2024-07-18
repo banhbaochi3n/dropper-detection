@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YARA Scan Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 2rem;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            color: #212529;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 10px 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: auto;
+        }
+
+        th, td {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+            vertical-align: top;
+            font-size: 12px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        /* Style for the "Detected" column */
+        .detected-yes {
+            color: green;
+            font-weight: bold;
+        }
+
+        .detected-no {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>YARA Scan Results</h1>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>File Path</th>
+                    <th>Size (Bytes)</th>
+                    <th>Scanned At</th>
+                    <th>Time Taken (second)</th>
+                    <th>Detected</th>
+                    <th>Matched Rules</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each detections}}
+                    <tr>
+                        <td>{{path}}</td>
+                        <td>{{size}}</td>
+                        <td>{{scanned_at}}</td>
+                        <td>{{time}}</td>
+                        <td class="detected-{{#if detected}}yes{{else}}no{{/if}}">{{#if detected}}Yes{{else}}No{{/if}}</td>
+                        <td>
+                            <ul>
+                            {{#each tags}}
+                                <li>{{this}}</li>
+                            {{/each}}
+                            </ul>
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

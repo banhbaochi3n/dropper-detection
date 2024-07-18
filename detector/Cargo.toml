@@ -1,0 +1,18 @@
+[package]
+name = "detector"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "3.2.17", features = ["derive"] }
+log = "0.4.17"
+notify = "4.0.17"
+num_cpus = "1.13.1"
+pretty_env_logger = "0.4.0"
+serde = { version = "1.0.143", features = ["derive"] }
+serde_json = "1.0.83"
+threadpool = "1.8.1"
+walkdir = "2.3.2"
+yara = { version = "0.28.0" }
+yara-sys = { version = "0.28.0", features = ["vendored"] }
+winrt-notification = "0.5.1"
